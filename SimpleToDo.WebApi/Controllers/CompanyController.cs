@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-using SimpleToDo.DataAccessLayer;
-using SimpleToDo.WebApi.Models.Common;
-using SimpleToDo.WebApi.Models.Company;
+﻿using SimpleToDo.WebApi.Models.Company;
 
 namespace SimpleToDo.WebApi.Controllers;
 
