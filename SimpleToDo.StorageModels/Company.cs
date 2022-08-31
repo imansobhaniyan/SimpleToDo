@@ -6,6 +6,8 @@ public class Company
 
     public string Title { get; set; }
 
+    public string Identifier { get; set; }
+
     public List<CompanyUser> Users { get; set; }
     public List<CompanyGroup> Groups { get; set; }
 }
