@@ -14,6 +14,8 @@ builder.Services.AddDbContext<SimpleToDo.DataAccessLayer.ToDoDbContext>(options 
     options.UseSqlServer(connectionStringBuilder.Build());
 });
 
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -24,6 +26,9 @@ using(var scope = app.Services.CreateScope())
 
     await dbContext.Database.MigrateAsync();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 
