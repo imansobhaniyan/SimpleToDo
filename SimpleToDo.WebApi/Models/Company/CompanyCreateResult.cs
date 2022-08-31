@@ -4,7 +4,7 @@ namespace SimpleToDo.WebApi.Models.Company;
 
 public class CompanyCreateResult
 {
-    public CompanyCreateResult(StorageModels.Company company, User adminUser)
+    public CompanyCreateResult(StorageModels.Company company, StorageModels.User adminUser)
     {
         Id = company.Id;
         UserId = adminUser.Id;

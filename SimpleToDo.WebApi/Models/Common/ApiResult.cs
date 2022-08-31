@@ -12,6 +12,7 @@
 
         public static ApiResult<T> AlreadyExists { get; } = new ApiResult<T> { Error = "Item already exists" };
         public static ApiResult<T> NotFound { get; } = new ApiResult<T> { Error = "Item not found" };
+        public static ApiResult<T> NotAuthorized { get; } = new ApiResult<T> { Error = "Request not authorized" };
 
         public static ApiResult<T> CreateSuccessResult(T? result)
         {

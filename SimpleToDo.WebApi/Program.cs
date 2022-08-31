@@ -1,8 +1,9 @@
-using Microsoft.EntityFrameworkCore;
+
+using SimpleToDo.WebApi.Middlwwares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<SimpleToDo.DataAccessLayer.ToDoDbContext>(options =>
+builder.Services.AddDbContext<ToDoDbContext>(options =>
 {
     var connectionStringBuilder = new Ighan.DbHelpers.Core.IghanConnectionStringBuilder(
         builder.Configuration["DbOptions:Instance"],
@@ -16,13 +17,15 @@ builder.Services.AddDbContext<SimpleToDo.DataAccessLayer.ToDoDbContext>(options 
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<AuthenticationMiddleware>();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetService<SimpleToDo.DataAccessLayer.ToDoDbContext>();
+    var dbContext = scope.ServiceProvider.GetService<ToDoDbContext>();
 
     await dbContext.Database.MigrateAsync();
 }
@@ -30,7 +33,7 @@ using(var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseAuthorization();
+app.UseMiddleware<AuthenticationMiddleware>();
 
 app.MapControllers();
 
